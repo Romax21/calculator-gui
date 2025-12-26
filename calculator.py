@@ -16,7 +16,7 @@ inputEntry.pack(padx=10,pady=(20,10),fill='x')
 
 output_field = tk.StringVar()
 outputEntry = tk.Entry(root,width=40,textvariable=output_field,justify='right',font=('arial',20),state='readonly')
-output_field.set("333")
+output_field.set("")
 
 outputEntry.pack(padx=10,pady=10,fill='x')
 
@@ -55,10 +55,12 @@ buttonMulti.grid(row=2,column=3,sticky='nsew')
 buttonDiv = tk.Button(buttonFrame,text='/',font=('arial',20),bd=0,bg='white',fg='black',command=lambda:add_number('/'))
 buttonDiv.grid(row=3,column=3,sticky='nsew')
 
-buttonFrame.pack(padx=10,pady=10,fill='both')
+# buttonFrame.pack_propagate(False)
+# buttonFrame.configure(width=350,height=550)
 
 for i in range(4) : 
     buttonFrame.columnconfigure(i,weight=1)
     buttonFrame.rowconfigure(i,weight=1)
+buttonFrame.pack(padx=10,pady=10,fill='both',expand=True)
 
 root.mainloop()
