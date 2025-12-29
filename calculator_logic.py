@@ -29,6 +29,8 @@ def calculate_expresion(expression) :
         case '*' : 
             result = firstNumber * secondNumber
         case '/' : 
+            if secondNumber == 0 : 
+                return "division by zero is not possible !!!"
             result = firstNumber//secondNumber
         case _: 
             result = None
@@ -37,3 +39,4 @@ def calculate_expresion(expression) :
 
 print(calculate_expresion("123+568"))
 print(calculate_expresion("1111/5"))
+print(calculate_expresion("0/0"))
