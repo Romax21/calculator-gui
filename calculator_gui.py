@@ -46,27 +46,33 @@ def add_doubleZero() :
         return
     # when l is 1 and the char is '-'
     if curr[l-1] == '-' : 
-        # when it is just "-", 0 will consume it sinec -0 is 0
+        # when it is just "-", 0 will consume it since -0 is 0
         if l == 1 : input_field.set('0')
         # otherwise it is something like "398-" -> "398-0"
         else : input_field.set(curr + '0')
         return
     # when the last char is zero
     if curr[l-1] == '0' : 
+        # curr is "0"
         if l == 1 : return
+        
         # something like "123-0"
         if curr[l-2] in '+-*/' : return
-        input_field.set(curr + '0')
+        input_field.set(curr + '00')
 
 def add_number(number) : 
+    # let's say number is '1'
     curr = input_field.get()
+    if not curr : 
+        input_field.set(number)
+        return
     l = len(curr)
-    if curr[l-1] == 0 : 
-        # if number = 1 and curr = "0", curr => "1"
+    if curr[l-1] == '0' : 
+        # if curr = "0", curr -> "1"
         if l == 1 : 
             input_field.set(number)
             return
-        # if curr is "143*0"
+        # if curr is "143*0", it will "143*1"
         if curr[l-2] in '+-*/' : 
             input_field.set(curr[0:l-1] + number)
             return
