@@ -8,11 +8,14 @@ def calculate_expresion(expression) :
     operator = '.'
     index = 0
     
-    for op in "+-*/" : 
+    for op in "*/+-" : 
         if op in expression : 
             operator = op
             index = expression.find(op)
             break
+    
+    if operator == '.' : 
+        return expression
     
     firstNumber = int(expression[:index])
     if(negative) : firstNumber *= -1
@@ -37,6 +40,6 @@ def calculate_expresion(expression) :
     
     return str(result)
 
-print(calculate_expresion("123+568"))
-print(calculate_expresion("1111/5"))
-print(calculate_expresion("0/0"))
+# print(calculate_expresion("123+568"))
+# print(calculate_expresion("1111/-5"))
+# print(calculate_expresion("0/0"))
