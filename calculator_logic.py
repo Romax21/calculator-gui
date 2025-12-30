@@ -4,6 +4,7 @@ def calculate_expresion(expression) :
         negative = True
         expression = expression[1:]
     
+    # print(expression)
     if not expression : return
     result = 0
     operator = '.'
@@ -18,13 +19,16 @@ def calculate_expresion(expression) :
     if operator == '.' : 
         return expression
     
+    # print(index)
     firstNumber = int(expression[:index])
     if(negative) : firstNumber *= -1
     # print(firstNumber)
     
     s = expression[index+1:]
+    if not s : return firstNumber
     if len(s) == 1 and s[0] in '*/+-' : return firstNumber
     if len(s) == 2 and s[0] in '*/+-' and s[1] == '-' : return firstNumber
+    
     secondNumber = int(expression[index+1:])
     # print(secondNumber)
     
@@ -43,7 +47,3 @@ def calculate_expresion(expression) :
             result = None
     
     return str(result)
-
-# print(calculate_expresion("123+568"))
-# print(calculate_expresion("1111/-5"))
-# print(calculate_expresion("0/0"))
