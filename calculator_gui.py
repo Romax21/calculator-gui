@@ -79,8 +79,128 @@ def add_number(number) :
     
     input_field.set(curr + number)
 
-def add_operator(op) : 
+def op_index() : 
     curr = input_field.get()
+    index = 0
+    if curr[0] == '-' : index += 1
+    
+    l = len(curr)
+    while index < l : 
+        if curr[index] in '+-*/' : 
+            return index
+        index += 1
+    return -1
+
+def add_plus() : 
+    curr = input_field.get()
+    # if curr is empty, no need to add anything
+    if not curr : 
+        return
+    l = len(curr)
+    if l == 1 : 
+        # if curr is only '-', it will changed to nothing
+        # basically, user changed from writing a negative number to a positive number
+        if curr[0] == '-' : 
+            input_field.set('')
+            return
+        # if curr is then like '9' -> '9+'
+        input_field.set(curr + '+')
+        return
+    
+    index = op_index()
+    # there is no operator so curr is like - '-34' or '342'
+    if index == -1 : 
+        input_field.set(curr + '+')
+        return
+    
+    # if operator is at last index, so curr - '-786*' or '-4589-'
+    if index == l-1 : 
+        # we will change the op
+        input_field.set(curr[:-1] + '+')
+        return
+    # cases like '456*-' or 'cases like 2334/-'
+    if index == l-2 : 
+        # we will just remove the minus
+        input_field.set(curr[:-1])
+        return
+    # if index < l-2 -> there already a operator before, we won't add anything new
+    return
+
+def add_minus() : 
+    curr = input_field.get()
+    # if curr is empty, just append the minus
+    if not curr : 
+        input_field.set('-')
+        return
+    l = len(curr)
+    if l == 1 : 
+        # if curr is only '-', it will stay the same
+        if curr[0] == '-' : return
+        # if curr is then like '9' -> '9-'
+        input_field.set(curr + '-')
+        return
+    
+    index = op_index()
+    # there is no operator so curr is like - '-34' or '342'
+    if index == -1 : 
+        input_field.set(curr + '-')
+        return
+    
+    # if operator is at last index, so curr - '-786*' or '-4589-'
+    if index == l-1 : 
+        if curr[index] in '*/' : 
+            # going from '-123*' to '-123*-'
+            input_field.set(curr + '-')
+            return
+        if curr[index] == '+' : 
+            # we will change the positive to negative : 
+            input_field.set(curr[:-1] + '-')
+            return
+        # since -- is +, we will remove the minus and changed it to plus
+        input_field.set(curr[:-1] + '+')
+        return
+    
+    # cases like '456*-' or 'cases like 2334/-'
+    # if index == l-2 : 
+        # things will stay the same
+        return
+    # if index < l-2 -> there already a operator before, we won't add anything new
+    return
+
+def add_operator(op) : 
+    if op == '+' : 
+        add_plus()
+        return
+    if op == '-' : 
+        add_minus()
+        return
+    
+    # remaining op are * and /
+    curr = input_field.get()
+    # if curr is empty no need to add anything
+    if not curr : return
+    
+    # starting of the negative number
+    l = len(curr)
+    if l == 1 and curr[0] == '-' : return
+    
+    index = op_index()
+    if index == -1 : 
+        # add the operator since there is none right now
+        input_field.set(curr + op)
+        return
+    if index == l-1 : 
+        # since the op is at last place, change it to current op
+        input_field.set(curr[:-1] + op)
+        return
+    if index == l-2 : 
+        # it is the case of curr being "123*-" or "123/-" : 
+        # we will remove the last two operators and add the curr one
+        input_field.set(curr[:-2] + op)
+        return
+    # if index < l-2, operator is already here, we will not add it.
+    return
+
 def equalCalled() : 
     curr = input_field.get()
 
