@@ -23,7 +23,8 @@ def calculate_expresion(expression) :
     # print(firstNumber)
     
     s = expression[index+1:]
-    if len(s) == 1 and s[0] == '-' : return firstNumber
+    if len(s) == 1 and s[0] in '*/+-' : return firstNumber
+    if len(s) == 2 and s[0] in '*/+-' and s[1] == '-' : return firstNumber
     secondNumber = int(expression[index+1:])
     # print(secondNumber)
     
