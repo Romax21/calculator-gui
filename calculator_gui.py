@@ -1,4 +1,5 @@
 import tkinter as tk
+from calculator_logic import calculate_expresion
 
 def add_zero() : 
     curr = input_field.get()
@@ -203,6 +204,17 @@ def add_operator(op) :
 
 def equalCalled() : 
     curr = input_field.get()
+    if not curr : return
+    expression = input_field.get()
+    out = calculate_expresion(expression)
+    
+    if not out : return
+    if out == "ZeroDivision" : 
+        output_field.set("Division by zero is not possible !!!")
+        input_field.set('')
+        return
+    output_field.set(out)
+    return
 
 root = tk.Tk()
 root.geometry("400x600")

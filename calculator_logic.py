@@ -4,6 +4,7 @@ def calculate_expresion(expression) :
         negative = True
         expression = expression[1:]
     
+    if not expression : return
     result = 0
     operator = '.'
     index = 0
@@ -19,10 +20,12 @@ def calculate_expresion(expression) :
     
     firstNumber = int(expression[:index])
     if(negative) : firstNumber *= -1
-    print(firstNumber)
+    # print(firstNumber)
     
+    s = expression[index+1:]
+    if len(s) == 1 and s[0] == '-' : return firstNumber
     secondNumber = int(expression[index+1:])
-    print(secondNumber)
+    # print(secondNumber)
     
     match operator : 
         case '+' : 
@@ -33,7 +36,7 @@ def calculate_expresion(expression) :
             result = firstNumber * secondNumber
         case '/' : 
             if secondNumber == 0 : 
-                return "division by zero is not possible !!!"
+                return "ZeroDivision"
             result = firstNumber//secondNumber
         case _: 
             result = None
