@@ -203,9 +203,6 @@ def add_operator(op) :
     return
 
 def equalCalled() : 
-    curr = input_field.get()
-    # if the input is empty, do nothing
-    if not curr : return
     expression = input_field.get()
     out = calculate_expresion(expression)
     
