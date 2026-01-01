@@ -1,13 +1,14 @@
 def calculate_expresion(expression) : 
     negative = False
+    # remove the negative but store it
     if(expression[0] == '-') : 
         negative = True
         expression = expression[1:]
     
-    # print(expression)
+    # if expression is empty
     if not expression : return
     result = 0
-    operator = '.'
+    operator = '$'
     index = 0
     
     for op in "*/+-" : 
@@ -16,13 +17,15 @@ def calculate_expresion(expression) :
             index = expression.find(op)
             break
     
-    if operator == '.' : 
+    # it implies there is no operator
+    if operator == '$' : 
+        # if the number was negative, add the negative
+        if negative : 
+            expression = '-' + expression
         return expression
     
-    # print(index)
     firstNumber = int(expression[:index])
     if(negative) : firstNumber *= -1
-    # print(firstNumber)
     
     s = expression[index+1:]
     if not s : return firstNumber
@@ -30,7 +33,6 @@ def calculate_expresion(expression) :
     if len(s) == 2 and s[0] in '*/+-' and s[1] == '-' : return firstNumber
     
     secondNumber = int(expression[index+1:])
-    # print(secondNumber)
     
     match operator : 
         case '+' : 
@@ -47,3 +49,5 @@ def calculate_expresion(expression) :
             result = None
     
     return str(result)
+
+print(calculate_expresion("-66"))

@@ -204,15 +204,19 @@ def add_operator(op) :
 
 def equalCalled() : 
     curr = input_field.get()
+    # if the input is empty, do nothing
     if not curr : return
     expression = input_field.get()
     out = calculate_expresion(expression)
     
+    # if output is empty, do nothing
     if not out : return
+    # for division by zero
     if out == "ZeroDivision" : 
         output_field.set("Division by zero is not possible !!!")
         input_field.set('')
         return
+    # else just set the output field
     output_field.set(out)
     return
 
