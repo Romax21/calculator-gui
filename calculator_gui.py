@@ -217,6 +217,10 @@ def equalCalled() :
     output_field.set(out)
     return
 
+def resetScreen() : 
+    input_field.set('')
+    output_field.set('')
+
 root = tk.Tk()
 root.geometry("400x600")
 root.title("Calculator GUI")
@@ -231,6 +235,10 @@ outputEntry = tk.Entry(root,width=40,textvariable=output_field,justify='right',f
 output_field.set("")
 outputEntry.pack(padx=10,pady=10,fill='x')
 
+btn_style = {'font':('arial',20), 'bd':2, 'relief':'raised', 'bg':'white', 'fg':'black'}
+
+resetBtn = tk.Button(root,text = 'Reset',command = resetScreen(), **btn_style)
+resetBtn.pack(padx = 10,pady=5,fill = 'x')
 buttonFrame = tk.Frame(root,bg='lightgrey')
 
 buttons = []
@@ -240,8 +248,6 @@ button_defs = [
     ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('*', 2, 3),
     ('00', 3, 0), ('0', 3, 1), ('=', 3, 2), ('/', 3, 3)
 ]
-
-btn_style = {'font':('arial',20), 'bd':2, 'relief':'raised', 'bg':'white', 'fg':'black'}
 
 for (text,row,col) in button_defs : 
     if text == '0' : 
