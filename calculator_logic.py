@@ -67,5 +67,3 @@ def calculate_expresion(expression) :
     if result == '-0' : 
         result = '0'
     return result
-
-print(calculate_expresion("-66"))

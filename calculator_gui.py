@@ -220,10 +220,11 @@ def equalCalled() :
     
     # if output is empty, do nothing
     if not out : return
+    
+    input_field.set('')
     # for division by zero
     if out == "ZeroDivision" : 
         output_field.set("Division by zero is not possible !!!")
-        input_field.set('')
         return
     # else just set the output field
     output_field.set(out)
@@ -249,7 +250,7 @@ outputEntry.pack(padx=10,pady=10,fill='x')
 
 btn_style = {'font':('arial',20), 'bd':2, 'relief':'raised', 'bg':'white', 'fg':'black'}
 
-resetBtn = tk.Button(root,text = 'Reset',command = resetScreen(), **btn_style)
+resetBtn = tk.Button(root,text = 'Reset',command=resetScreen, **btn_style)
 resetBtn.pack(padx = 10,pady=5,fill = 'x')
 
 buttonFrame = tk.Frame(root,bg='lightgrey')
@@ -264,7 +265,7 @@ button_defs = [
 
 for (text,row,col) in button_defs : 
     if text == '0' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda:add_zero(),**btn_style)
+        btn = tk.Button(buttonFrame,text=text,command=add_zero,**btn_style)
     # elif text == '00' : 
     #     btn = tk.Button(buttonFrame,text=text,command=lambda:add_doubleZero(),**btn_style)
     elif text >= '1' and text <= '9' : 
@@ -272,15 +273,15 @@ for (text,row,col) in button_defs :
     elif text in "%+-*/" : 
         btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_operator(t),**btn_style)
     elif text == '.' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda : add_decimal(),**btn_style)
+        btn = tk.Button(buttonFrame,text=text,command=add_decimal,**btn_style)
     elif text == '<=' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda : backspace(),**btn_style)
+        btn = tk.Button(buttonFrame,text=text,command=backspace,**btn_style)
     elif text == '1/x' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda : reciprocal(),**btn_style)
+        btn = tk.Button(buttonFrame,text=text,command=reciprocal,**btn_style)
     elif text == 'x^2' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda : square(),**btn_style)
+        btn = tk.Button(buttonFrame,text=text,command=square,**btn_style)
     else : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda : equalCalled(),**btn_style)
+        btn = tk.Button(buttonFrame,text=text,command=equalCalled,**btn_style)
     btn.grid(row=row,column=col,sticky='nsew')
     buttons.append(btn)
 
