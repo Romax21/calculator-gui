@@ -1,6 +1,18 @@
 import tkinter as tk
 from calculator_logic import calculate_expresion
 
+def op_index() : 
+    curr = input_field.get()
+    index = 0
+    if curr[0] == '-' : index += 1
+    
+    l = len(curr)
+    while index < l : 
+        if curr[index] in '+-*/' : 
+            return index
+        index += 1
+    return -1
+
 def add_zero() : 
     curr = input_field.get()
     # when curr is empty, add the zero
@@ -80,17 +92,8 @@ def add_number(number) :
     
     input_field.set(curr + number)
 
-def op_index() : 
-    curr = input_field.get()
-    index = 0
-    if curr[0] == '-' : index += 1
-    
-    l = len(curr)
-    while index < l : 
-        if curr[index] in '+-*/' : 
-            return index
-        index += 1
-    return -1
+def add_decimal() : 
+    return
 
 def add_plus() : 
     curr = input_field.get()
@@ -202,6 +205,15 @@ def add_operator(op) :
     # if index < l-2, operator is already here, we will not add it.
     return
 
+def backspace() : 
+    return
+
+def reciprocal() : 
+    return
+
+def square() : 
+    return
+
 def equalCalled() : 
     expression = input_field.get()
     out = calculate_expresion(expression)
@@ -239,25 +251,34 @@ btn_style = {'font':('arial',20), 'bd':2, 'relief':'raised', 'bg':'white', 'fg':
 
 resetBtn = tk.Button(root,text = 'Reset',command = resetScreen(), **btn_style)
 resetBtn.pack(padx = 10,pady=5,fill = 'x')
-buttonFrame = tk.Frame(root,bg='lightgrey')
 
+buttonFrame = tk.Frame(root,bg='lightgrey')
 buttons = []
 button_defs = [
-    ('1', 0, 0), ('2', 0, 1), ('3', 0, 2), ('+', 0, 3),
-    ('4', 1, 0), ('5', 1, 1), ('6', 1, 2), ('-', 1, 3),
-    ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('*', 2, 3),
-    ('00', 3, 0), ('0', 3, 1), ('=', 3, 2), ('/', 3, 3)
+    ('%', 0, 0), ('1/x', 0, 1), ('x^2', 0, 2), ('<=', 0, 3),
+    ('1', 1, 0), ('2', 1, 1), ('3', 1, 2), ('+', 1, 3),
+    ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('-', 2, 3),
+    ('7', 3, 0), ('8', 3, 1), ('9', 3, 2), ('*', 3, 3),
+    ('.', 4, 0), ('0', 4, 1), ('=', 4, 2), ('/', 4, 3)
 ]
 
 for (text,row,col) in button_defs : 
     if text == '0' : 
         btn = tk.Button(buttonFrame,text=text,command=lambda:add_zero(),**btn_style)
-    elif text == '00' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda:add_doubleZero(),**btn_style)
+    # elif text == '00' : 
+    #     btn = tk.Button(buttonFrame,text=text,command=lambda:add_doubleZero(),**btn_style)
     elif text >= '1' and text <= '9' : 
         btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_number(t),**btn_style)
-    elif text in "+-*/" : 
+    elif text in "%+-*/" : 
         btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_operator(t),**btn_style)
+    elif text == '.' : 
+        btn = tk.Button(buttonFrame,text=text,command=lambda : add_decimal(),**btn_style)
+    elif text == '<=' : 
+        btn = tk.Button(buttonFrame,text=text,command=lambda : backspace(),**btn_style)
+    elif text == '1/x' : 
+        btn = tk.Button(buttonFrame,text=text,command=lambda : reciprocal(),**btn_style)
+    elif text == 'x^2' : 
+        btn = tk.Button(buttonFrame,text=text,command=lambda : square(),**btn_style)
     else : 
         btn = tk.Button(buttonFrame,text=text,command=lambda : equalCalled(),**btn_style)
     btn.grid(row=row,column=col,sticky='nsew')
@@ -266,7 +287,9 @@ for (text,row,col) in button_defs :
 
 for i in range(4) : 
     buttonFrame.columnconfigure(i,weight=1)
+for i in range(5) : 
     buttonFrame.rowconfigure(i,weight=1)
+
 buttonFrame.pack(padx=10,pady=10,fill='both',expand=True)
 
 root.mainloop()
