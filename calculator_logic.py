@@ -26,7 +26,7 @@ def calculate_expresion(expression) :
     operator = '$'
     index = 0
     
-    for op in "*/+-" : 
+    for op in "*/+-%" : 
         if op in expression : 
             operator = op
             index = expression.find(op)
@@ -60,6 +60,10 @@ def calculate_expresion(expression) :
             if secondNumber == 0 : 
                 return "ZeroDivision"
             result = firstNumber/secondNumber
+        case '%' : 
+            if secondNumber == 0 :
+                return "ZeroDivision"
+            result = (firstNumber/secondNumber) * 100
         case _: 
             result = None
     result = removeTrailingZeroes(str(result))
