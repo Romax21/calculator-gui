@@ -1,6 +1,10 @@
 import tkinter as tk
 from calculator_logic import calculate_expresion
 
+def clearOutput() : 
+    output_field.set('')
+    return
+
 def op_index() : 
     curr = input_field.get()
     index = 0
@@ -206,7 +210,9 @@ def add_operator(op) :
     return
 
 def backspace() : 
-    return
+    curr = input_field.get()
+    if not curr : return
+    input_field.set(curr[:-1])
 
 def reciprocal() : 
     return
