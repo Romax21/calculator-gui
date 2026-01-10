@@ -280,11 +280,21 @@ def add_operator(op) :
     # if index < l-2, operator is already here, we will not add it.
 
 def backspace() : 
+    out = output_field.get()
+    clearOutput()
+    if out != "Division by zero is not possible !!!" : 
+        input_field.set(out)
+    
     curr = input_field.get()
     if not curr : return
     input_field.set(curr[:-1])
 
 def reciprocal() : 
+    out = output_field.get()
+    clearOutput()
+    if len(out) > 0 and out != "Division by zero is not possible !!!" : 
+        input_field.set(out)
+    
     expression = input_field.get()
     out = calculate_expresion(expression)
     
@@ -293,18 +303,23 @@ def reciprocal() :
     
     input_field.set('')
     # for division by zero
-    if out == "ZeroDivision" : 
-        output_field.set("Division by zero is not possible !!!")
+    if out == "Division by zero is not possible !!!" : 
+        output_field.set(out)
         return
     out = calculate_expresion("1/" + out)
-    if out == "ZeroDivision" : 
-        output_field.set("Division by zero is not possible !!!")
+    if out == "Division by zero is not possible !!!" : 
+        output_field.set(out)
         return
     # else just set the output field
     output_field.set(out)
     return
 
 def square() : 
+    out = output_field.get()
+    clearOutput()
+    if len(out) > 0 and out != "Division by zero is not possible !!!" : 
+        input_field.set(out)
+    
     expression = input_field.get()
     out = calculate_expresion(expression)
     
@@ -313,8 +328,8 @@ def square() :
     
     input_field.set('')
     # for division by zero
-    if out == "ZeroDivision" : 
-        output_field.set("Division by zero is not possible !!!")
+    if out == "Division by zero is not possible !!!" : 
+        output_field.set(out)
         return
     # else just set the output field
     out = calculate_expresion(out + "*" + out)
@@ -330,8 +345,8 @@ def equalCalled() :
     
     input_field.set('')
     # for division by zero
-    if out == "ZeroDivision" : 
-        output_field.set("Division by zero is not possible !!!")
+    if out == "Division by zero is not possible !!!" : 
+        output_field.set(out)
         return
     # else just set the output field
     output_field.set(out)

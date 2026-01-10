@@ -58,11 +58,11 @@ def calculate_expresion(expression) :
             result = firstNumber * secondNumber
         case '/' : 
             if secondNumber == 0 : 
-                return "ZeroDivision"
+                return "Division by zero is not possible !!!"
             result = firstNumber/secondNumber
         case '%' : 
             if secondNumber == 0 :
-                return "ZeroDivision"
+                return "Division by zero is not possible !!!"
             result = (firstNumber/secondNumber) * 100
         case _: 
             result = None
