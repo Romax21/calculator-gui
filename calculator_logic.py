@@ -39,15 +39,15 @@ def calculate_expresion(expression) :
             expression = '-' + expression
         return removeTrailingZeroes(expression)
     
-    firstNumber = float(expression[:index])
+    firstNumber = float(removeTrailingZeroes(expression[:index]))
     if(negative) : firstNumber *= -1
     
     s = expression[index+1:]
-    if not s : return removeTrailingZeroes(str(firstNumber))
-    if len(s) == 1 and s[0] in '*/+-' : return removeTrailingZeroes(str(firstNumber))
-    if len(s) == 2 and s[0] in '*/+-' and s[1] == '-' : return removeTrailingZeroes(str(firstNumber))
+    # all these cases, there is no second number, so just return the second number
+    if not s : return str(firstNumber)
+    if len(s) == 1 and s[0] == '-' : str(firstNumber)
     
-    secondNumber = float(expression[index+1:])
+    secondNumber = float(removeTrailingZeroes(expression[index+1:]))
     
     match operator : 
         case '+' : 
