@@ -194,11 +194,17 @@ def add_plus() :
     return
 
 def add_minus() : 
+    out = output_field.get()
+    clearOutput()
+    if out != "Division by zero is not possible !!!" : 
+        input_field.set(out)
+    
     curr = input_field.get()
     # if curr is empty, just append the minus
     if not curr : 
         input_field.set('-')
         return
+    
     l = len(curr)
     if l == 1 : 
         # if curr is only '-', it will stay the same
@@ -210,6 +216,8 @@ def add_minus() :
     index = op_index()
     # there is no operator so curr is like - '-34' or '342'
     if index == -1 : 
+        # if there is decimal at last place, remove the decimal
+        if curr[l-1] == '.' : curr = curr[:-1]
         input_field.set(curr + '-')
         return
     
@@ -228,11 +236,8 @@ def add_minus() :
         return
     
     # cases like '456*-' or 'cases like 2334/-'
-    # if index == l-2 : 
-        # things will stay the same
-        return
+    # if index == l-2 :  things will stay the same
     # if index < l-2 -> there already a operator before, we won't add anything new
-    return
 
 def add_operator(op) : 
     if op == '+' : 
