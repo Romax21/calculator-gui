@@ -12,12 +12,13 @@ def op_index() :
     
     l = len(curr)
     while index < l : 
-        if curr[index] in '+-*/' : 
+        if curr[index] in '*/+-%' : 
             return index
         index += 1
     return -1
 
 def add_zero() : 
+    clearOutput()
     curr = input_field.get()
     # when curr is empty, add the zero
     if not curr : 
@@ -29,7 +30,7 @@ def add_zero() :
         input_field.set(curr + '0')
         return
     # when the last digit is one of these operator, "324+" -> "324+0"
-    if curr[l-1] in '+*/' : 
+    if curr[l-1] in '%+*/' : 
         input_field.set(curr + '0')
         return
     # when l is 1 and the char is '-'
@@ -97,6 +98,47 @@ def add_number(number) :
     input_field.set(curr + number)
 
 def add_decimal() : 
+    curr = input_field.get()
+    # if the curr is empty
+    if not curr : 
+        input_field.set("0.")
+        return
+    
+    l = len(curr)
+    # if the last char is already a decimal, just return
+    if curr[l-1] == '.' : return
+    
+    # if curr is 1 length
+    if l == 1 : 
+        # and that is a negative, "-" - > "-0."
+        if curr[0] ==  '-' : 
+            input_field.set("-0.")
+            return
+        # else it can only be a number, "4" -> "4."
+        input_field.set(curr + ".")
+        return
+    
+    # if the last char is an operator
+    if curr[l-1] in '%+-*/' : 
+        # "123-" - > "123-0." or "45*-" -> "45*-0."
+        input_field.set(curr + "0.")
+        return
+    
+    index = op_index()
+    # if there is no operator
+    if index == -1 : 
+        # check whether there is already a decimal in the first number
+        # if yes, just return
+        if '.' in curr : return
+        # else, add the decimal and return
+        input_field.set(curr + '.')
+        return
+    
+    # now check in the second number if there is already decimal,if yes then return it
+    if '.' in curr[index+1:] : 
+        return
+    # else add the decimal in the number
+    input_field.set(curr + '.')
     return
 
 def add_plus() : 
@@ -215,9 +257,40 @@ def backspace() :
     input_field.set(curr[:-1])
 
 def reciprocal() : 
+    expression = input_field.get()
+    out = calculate_expresion(expression)
+    
+    # if output is empty, do nothing
+    if not out : return
+    
+    input_field.set('')
+    # for division by zero
+    if out == "ZeroDivision" : 
+        output_field.set("Division by zero is not possible !!!")
+        return
+    out = calculate_expresion("1/" + out)
+    if out == "ZeroDivision" : 
+        output_field.set("Division by zero is not possible !!!")
+        return
+    # else just set the output field
+    output_field.set(out)
     return
 
 def square() : 
+    expression = input_field.get()
+    out = calculate_expresion(expression)
+    
+    # if output is empty, do nothing
+    if not out : return
+    
+    input_field.set('')
+    # for division by zero
+    if out == "ZeroDivision" : 
+        output_field.set("Division by zero is not possible !!!")
+        return
+    # else just set the output field
+    out = calculate_expresion(out + "*" + out)
+    output_field.set(out)
     return
 
 def equalCalled() : 
