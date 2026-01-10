@@ -85,12 +85,16 @@ def add_doubleZero() :
 def add_number(number) : 
     # let's say number is '1'
     curr = input_field.get()
+    
+    # if the curr is empty, add the number
     if not curr : 
         input_field.set(number)
         return
+    
     l = len(curr)
+    # if the last digit is a zero
     if curr[l-1] == '0' : 
-        # if curr = "0", curr -> "1"
+        # and the l is 1, then "0" -> "1"
         if l == 1 : 
             input_field.set(number)
             return
@@ -99,6 +103,7 @@ def add_number(number) :
             input_field.set(curr[0:l-1] + number)
             return
     
+    # else in anyother case, just add the number
     input_field.set(curr + number)
 
 def add_decimal() : 
