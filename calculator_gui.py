@@ -151,24 +151,31 @@ def add_decimal() :
     return
 
 def add_plus() : 
+    out = output_field.get()
+    clearOutput()
+    if out != "Division by zero is not possible !!!" : 
+        input_field.set(out)
+    
     curr = input_field.get()
     # if curr is empty, no need to add anything
-    if not curr : 
-        return
+    if not curr : return
+    
     l = len(curr)
+    # if len is 1
     if l == 1 : 
-        # if curr is only '-', it will changed to nothing
-        # basically, user changed from writing a negative number to a positive number
+        # if it is '-', user changed from writing a negative number to a positive number
         if curr[0] == '-' : 
-            input_field.set('')
+            input_field.set('') # set the input to nothing
             return
-        # if curr is then like '9' -> '9+'
+        # otherwise it will be a number, so, it would be like '9' -> '9+'
         input_field.set(curr + '+')
         return
     
     index = op_index()
     # there is no operator so curr is like - '-34' or '342'
     if index == -1 : 
+        # if the last char is decimal, collapse it
+        if curr[l-1] == '.' : curr = curr[:-1]
         input_field.set(curr + '+')
         return
     
@@ -177,6 +184,7 @@ def add_plus() :
         # we will change the op
         input_field.set(curr[:-1] + '+')
         return
+    
     # cases like '456*-' or 'cases like 2334/-'
     if index == l-2 : 
         # we will just remove the minus
