@@ -388,8 +388,6 @@ button_defs = [
 for (text,row,col) in button_defs : 
     if text == '0' : 
         btn = tk.Button(buttonFrame,text=text,command=add_zero,**btn_style)
-    # elif text == '00' : 
-    #     btn = tk.Button(buttonFrame,text=text,command=lambda:add_doubleZero(),**btn_style)
     elif text >= '1' and text <= '9' : 
         btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_number(t),**btn_style)
     elif text in "%+-*/" : 
@@ -404,6 +402,7 @@ for (text,row,col) in button_defs :
         btn = tk.Button(buttonFrame,text=text,command=square,**btn_style)
     else : 
         btn = tk.Button(buttonFrame,text=text,command=equalCalled,**btn_style)
+    
     btn.grid(row=row,column=col,sticky='nsew')
     buttons.append(btn)
 
