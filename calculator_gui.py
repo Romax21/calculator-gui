@@ -247,7 +247,12 @@ def add_operator(op) :
         add_minus()
         return
     
-    # remaining op are * and /
+    out = output_field.get()
+    clearOutput()
+    if out != "Division by zero is not possible !!!" : 
+        input_field.set(out)
+    
+    # remaining op are * and / and %
     curr = input_field.get()
     # if curr is empty no need to add anything
     if not curr : return
@@ -261,17 +266,18 @@ def add_operator(op) :
         # add the operator since there is none right now
         input_field.set(curr + op)
         return
+    
     if index == l-1 : 
         # since the op is at last place, change it to current op
         input_field.set(curr[:-1] + op)
         return
+    
     if index == l-2 : 
-        # it is the case of curr being "123*-" or "123/-" : 
+        # it is the case of curr being "123*-" or "123/-" or "123%-" : 
         # we will remove the last two operators and add the curr one
         input_field.set(curr[:-2] + op)
         return
     # if index < l-2, operator is already here, we will not add it.
-    return
 
 def backspace() : 
     curr = input_field.get()
