@@ -45,7 +45,7 @@ def calculate_expresion(expression) :
     s = expression[index+1:]
     # all these cases, there is no second number, so just return the second number
     if not s : return str(firstNumber)
-    if len(s) == 1 and s[0] == '-' : return str(firstNumber)
+    if len(s) == 1 and s[0] == '-' : return removeTrailingZeroes(str(firstNumber))
     
     secondNumber = float(removeTrailingZeroes(expression[index+1:]))
     
