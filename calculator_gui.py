@@ -83,6 +83,7 @@ def add_doubleZero() :
         input_field.set(curr + '00')
 
 def add_number(number) : 
+    clearOutput()
     # let's say number is '1'
     curr = input_field.get()
     
@@ -107,6 +108,7 @@ def add_number(number) :
     input_field.set(curr + number)
 
 def add_decimal() : 
+    clearOutput()
     curr = input_field.get()
     # if the curr is empty
     if not curr : 
@@ -153,7 +155,7 @@ def add_decimal() :
 def add_plus() : 
     out = output_field.get()
     clearOutput()
-    if out != "Division by zero is not possible !!!" : 
+    if out and out != "Division by zero is not possible !!!" : 
         input_field.set(out)
     
     curr = input_field.get()
@@ -196,7 +198,7 @@ def add_plus() :
 def add_minus() : 
     out = output_field.get()
     clearOutput()
-    if out != "Division by zero is not possible !!!" : 
+    if out and out != "Division by zero is not possible !!!" : 
         input_field.set(out)
     
     curr = input_field.get()
@@ -249,7 +251,7 @@ def add_operator(op) :
     
     out = output_field.get()
     clearOutput()
-    if out != "Division by zero is not possible !!!" : 
+    if out and out != "Division by zero is not possible !!!" : 
         input_field.set(out)
     
     # remaining op are * and / and %
@@ -282,7 +284,7 @@ def add_operator(op) :
 def backspace() : 
     out = output_field.get()
     clearOutput()
-    if out != "Division by zero is not possible !!!" : 
+    if out and out != "Division by zero is not possible !!!" : 
         input_field.set(out)
     
     curr = input_field.get()
@@ -291,10 +293,11 @@ def backspace() :
 
 def reciprocal() : 
     out = output_field.get()
-    clearOutput()
-    if len(out) > 0 and out != "Division by zero is not possible !!!" : 
+    clearOutput() # clears the output
+    if out and out != "Division by zero is not possible !!!" : 
         input_field.set(out)
     
+    print(1)
     expression = input_field.get()
     out = calculate_expresion(expression)
     
@@ -317,7 +320,7 @@ def reciprocal() :
 def square() : 
     out = output_field.get()
     clearOutput()
-    if len(out) > 0 and out != "Division by zero is not possible !!!" : 
+    if out and out != "Division by zero is not possible !!!" : 
         input_field.set(out)
     
     expression = input_field.get()
@@ -388,20 +391,20 @@ button_defs = [
 for (text,row,col) in button_defs : 
     if text == '0' : 
         btn = tk.Button(buttonFrame,text=text,command=add_zero,**btn_style)
-    elif text >= '1' and text <= '9' : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_number(t),**btn_style)
-    elif text in "%+-*/" : 
-        btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_operator(t),**btn_style)
-    elif text == '.' : 
-        btn = tk.Button(buttonFrame,text=text,command=add_decimal,**btn_style)
-    elif text == '<=' : 
-        btn = tk.Button(buttonFrame,text=text,command=backspace,**btn_style)
     elif text == '1/x' : 
         btn = tk.Button(buttonFrame,text=text,command=reciprocal,**btn_style)
     elif text == 'x^2' : 
         btn = tk.Button(buttonFrame,text=text,command=square,**btn_style)
-    else : 
+    elif text == '.' : 
+        btn = tk.Button(buttonFrame,text=text,command=add_decimal,**btn_style)
+    elif text == '<=' : 
+        btn = tk.Button(buttonFrame,text=text,command=backspace,**btn_style)
+    elif text == "=" : 
         btn = tk.Button(buttonFrame,text=text,command=equalCalled,**btn_style)
+    elif text in '123456789' : 
+        btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_number(t),**btn_style)
+    elif text in "%+-*/" : 
+        btn = tk.Button(buttonFrame,text=text,command=lambda t=text:add_operator(t),**btn_style)
     
     btn.grid(row=row,column=col,sticky='nsew')
     buttons.append(btn)
