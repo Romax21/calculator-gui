@@ -1,4 +1,4 @@
-import calculator_logic
+from model import calculator_logic
 class calculator_engine : 
     def __init__(self):
         self.opA = ""

@@ -3,7 +3,7 @@ class calculator_controller :
     def __init__(self):
         self.expression = ""
         self.result = ""
-        self.ce = calculator_engine()
+        self.ce = calculator_engine.calculator_engine()
     
     def buttonPressed(self,text) : 
         self.expression = ""
