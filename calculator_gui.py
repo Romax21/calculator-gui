@@ -1,5 +1,5 @@
 import tkinter as tk
-from calculator_logic import calculate_expresion
+from model.calculator_logic import calculate_expresion
 
 def clearOutput() : 
     output_field.set('')

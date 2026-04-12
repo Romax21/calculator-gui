@@ -1,3 +1,4 @@
+import calculator_logic
 class calculator_engine : 
     def __init__(self):
         self.opA = ""
@@ -97,9 +98,9 @@ class calculator_engine :
         self.opB = ""
         self.oper = ""
         self.justEvaluated = False
-        return self.inputResult()
+        return (self.inputResult(),"")
     
-    def backspace(self) : 
+    def backspace(self) -> str : 
         if self.opB : 
             self.opB = self.opB[:-1]
             return self.inputResult()
@@ -112,3 +113,15 @@ class calculator_engine :
             self.opA = self.opA[:-1]
         
         return self.inputResult()
+    
+    def equalCalled(self) : 
+        result = calculator_logic.calculate_expresion(self.inputResult())
+        if result != calculator_logic.ZERO_DIVISION_MESSAGE : 
+            self.justEvaluated = True
+        else : 
+            self.justEvaluated = False
+        
+        self.opA = ""
+        self.opB = ""
+        self.oper = ""
+        return (self.inputResult(),result)
