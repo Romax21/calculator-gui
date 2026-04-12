@@ -23,7 +23,7 @@ outputEntry.pack(padx=10,pady=10,fill='x')
 
 btn_style = {'font':('arial',20), 'bd':2, 'relief':'raised', 'bg':'white', 'fg':'black'}
 
-resetBtn = tk.Button(root,text = 'Reset',command=buttonPressed("reset"), **btn_style)
+resetBtn = tk.Button(root,text = 'Reset',command=lambda t='Reset':buttonPressed(t), **btn_style)
 resetBtn.pack(padx = 10,pady=5,fill = 'x')
 
 buttonFrame = tk.Frame(root,bg='lightgrey')
