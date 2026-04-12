@@ -1,8 +1,10 @@
 import tkinter as tk
 from controller import calculator_controller
 
+cc = calculator_controller()
+
 def buttonPressed(text) : 
-    expression,result = calculator_controller.function(text)
+    expression,result = cc.buttonPressed()
     input_field.set(expression)
     output_field.set(result)
     return
