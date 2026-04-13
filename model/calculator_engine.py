@@ -1,4 +1,5 @@
 from model import calculator_logic
+from utils import constants
 class calculator_engine : 
     def __init__(self):
         self.opA = ""
@@ -116,7 +117,7 @@ class calculator_engine :
     
     def equalCalled(self) : 
         result = calculator_logic.calculate_expresion(self.inputResult())
-        if result != calculator_logic.ZERO_DIVISION_MESSAGE : 
+        if result != constants.ZERO_DIVISION_MESSAGE : 
             self.justEvaluated = True
         else : 
             self.justEvaluated = False
@@ -125,3 +126,27 @@ class calculator_engine :
         self.opB = ""
         self.oper = ""
         return (self.inputResult(),result)
+    
+    def reciprocal(self) : 
+        expression,result = self.equalCalled()
+        if result == constants.ZERO_DIVISION_MESSAGE : 
+            return (expression,result)
+        
+        self.opA = "1"
+        self.oper = "/"
+        self.opB = result
+        
+        expression, result = self.equalCalled() 
+        return (expression,result)
+    
+    def square(self) : 
+        expression,result = self.equalCalled()
+        if result == constants.ZERO_DIVISION_MESSAGE : 
+            return (expression,result)
+        
+        self.opA = result
+        self.oper = "*"
+        self.opB = result
+        
+        expression,result = self.equalCalled()
+        return (expression,result)
