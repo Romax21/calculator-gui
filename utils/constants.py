@@ -1,0 +1,1 @@
+ZERO_DIVISION_MESSAGE = "Division by zero is not possible !!!"

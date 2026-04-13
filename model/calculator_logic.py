@@ -1,4 +1,4 @@
-ZERO_DIVISION_MESSAGE = "Division by zero is not possible !!!"
+from utils import constants
 
 def removeTrailingZeroes(expression) : 
     if '.' not in expression : return expression
@@ -60,11 +60,11 @@ def calculate_expresion(expression) :
             result = firstNumber * secondNumber
         case '/' : 
             if secondNumber == 0 : 
-                return ZERO_DIVISION_MESSAGE
+                return constants.ZERO_DIVISION_MESSAGE
             result = firstNumber/secondNumber
         case '%' : 
             if secondNumber == 0 :
-                return ZERO_DIVISION_MESSAGE
+                return constants.ZERO_DIVISION_MESSAGE
             result = (firstNumber/secondNumber) * 100
         case _: 
             result = None
