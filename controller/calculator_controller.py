@@ -15,9 +15,9 @@ class calculator_controller :
         elif text in '+-*/%' : 
             self.expression = self.engine.addOperator(text)
         elif text == '1/x' : 
-            self.result = self.engine.reciprocal(text)
+            self.result = self.engine.reciprocal()
         elif text == 'x^2' : 
-            self.result = self.engine.square(text)
+            self.result = self.engine.square()
         elif text == '<=' : 
             self.expression = self.engine.backspace()
         elif text == '=' : 
