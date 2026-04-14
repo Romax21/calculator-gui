@@ -1,4 +1,4 @@
-from utils import constants
+from utils.constants import ZERO_DIVISION_MESSAGE
 
 def removeTrailingZeroes(expression) : 
     if '.' not in expression : return expression
@@ -60,11 +60,11 @@ def calculate_expresion(expression) :
             result = firstNumber * secondNumber
         case '/' : 
             if secondNumber == 0 : 
-                return constants.ZERO_DIVISION_MESSAGE
+                return ZERO_DIVISION_MESSAGE
             result = firstNumber/secondNumber
         case '%' : 
             if secondNumber == 0 :
-                return constants.ZERO_DIVISION_MESSAGE
+                return ZERO_DIVISION_MESSAGE
             result = (firstNumber/secondNumber) * 100
         case _: 
             result = None
@@ -73,3 +73,5 @@ def calculate_expresion(expression) :
     if result == '-0' : 
         result = '0'
     return result
+
+print(calculate_expresion("2+3"))
