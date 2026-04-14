@@ -99,7 +99,6 @@ class calculator_engine :
         self.opB = ""
         self.oper = ""
         self.justEvaluated = False
-        return (self.inputResult(),"")
     
     def backspace(self) -> str : 
         if self.opB : 
