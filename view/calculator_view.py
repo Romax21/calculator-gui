@@ -1,9 +1,10 @@
 import tkinter as tk
-from controller.calculator_controller import calculator_controller
+from model.calculator_engine import calculator_engine
+# from controller.calculator_controller import calculator_controller
 
 class calculator_view : 
     def __init__(self,controller) : 
-        self.controller = calculator_controller()
+        self.controller = controller
         self.root = tk.Tk()
         self.root.geometry("400x600")
         self.root.title("Calculator GUI")
