@@ -22,5 +22,7 @@ class calculator_controller :
             self.expression = self.engine.backspace()
         elif text == '=' : 
             self.expression,self.result = self.engine.equalCalled()
+        elif text == 'Reset' : 
+            self.engine.resetScreen()
         
         return (self.expression,self.result)
