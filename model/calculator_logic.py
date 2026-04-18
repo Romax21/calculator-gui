@@ -39,8 +39,8 @@ def calculate_expresion(expression) :
     
     # it implies there is no operator
     if operator == '$' : 
-        # if the number was negative, add the negative
-        if negative : 
+        # if the number was negative and not zero, add the negative
+        if negative and expression != "0" : 
             expression = '-' + expression
         return format_result(expression)
     
