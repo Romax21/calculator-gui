@@ -34,8 +34,13 @@ class calculator_engine :
         # continuing previous calculation
         if self.justEvaluated : 
             self.justEvaluated = False
+            
+            # Add the decimal to previous result
             if '.' not in self.opA : 
                 self.opA = self.opA + "."
+            #start a completely new calculation
+            else : 
+                self.opA = "0."
             return self.inputResult()
         
         # if operator is empty, we will add the decimal in opA
@@ -58,6 +63,7 @@ class calculator_engine :
         # continuing previous calculation
         if self.justEvaluated : 
             self.oper = "-"
+            self.justEvaluated = False
             return self.inputResult()
         
         # if opA is empty or opA is "-", opA will remain "-"
@@ -81,11 +87,18 @@ class calculator_engine :
         
         # continuing previous calcuation
         if self.justEvaluated : 
+            self.justEvaluated = False
             self.oper = op
             return self.inputResult()
         
         # if opA is empty or "-", we will do nothing
-        if not self.opA or self.opA == "-" : 
+        if not self.opA : 
+            return self.inputResult()
+        
+        # if opA is '-', we will set it to "" if op is +
+        if self.opA == '-' : 
+            if op == '+' : 
+                self.opA = ""
             return self.inputResult()
         
         # if oper is empty, set it to op
@@ -101,6 +114,11 @@ class calculator_engine :
         self.justEvaluated = False
     
     def backspace(self) -> str : 
+        # shifts the result to input screen for this one
+        if self.justEvaluated : 
+            self.justEvaluated = False
+            return self.inputResult()
+        
         if self.opB : 
             self.opB = self.opB[:-1]
             return self.inputResult()
@@ -118,13 +136,15 @@ class calculator_engine :
         result = calculator_logic.calculate_expresion(self.inputResult())
         if result != constants.ZERO_DIVISION_MESSAGE : 
             self.justEvaluated = True
+            self.opA = result
         else : 
             self.justEvaluated = False
+            self.opA = ""
         
-        self.opA = ""
+        expression = ""
         self.opB = ""
         self.oper = ""
-        return (self.inputResult(),result)
+        return (expression,result)
     
     def reciprocal(self) : 
         expression,result = self.equalCalled()
@@ -135,7 +155,7 @@ class calculator_engine :
         self.oper = "/"
         self.opB = result
         
-        expression, result = self.equalCalled() 
+        expression, result = self.equalCalled()
         return (expression,result)
     
     def square(self) : 
