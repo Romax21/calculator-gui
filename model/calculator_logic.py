@@ -1,12 +1,15 @@
 from utils.constants import ZERO_DIVISION_MESSAGE
 
-def removeTrailingZeroes(expression) : 
-    if '.' not in expression : return expression
-    index = len(expression)-1
-    while index >= 0 and expression[index] == '0' : 
-        index -= 1
-    if expression[index] != '.' : return expression[:index+1]
-    return expression[:index]
+def format_result(result) : 
+    num = float(result)
+    
+    #limit upto 10 digits after decimal to remove floating noise
+    formatted = f"{num:.10f}"
+    
+    # remove trailing zeroes and unnecessary decimal point
+    formatted = formatted.rstrip('0').rstrip('.')
+    
+    return formatted
 
 def calculate_expresion(expression) : 
     # if the expression is empty
@@ -39,17 +42,17 @@ def calculate_expresion(expression) :
         # if the number was negative, add the negative
         if negative : 
             expression = '-' + expression
-        return removeTrailingZeroes(expression)
+        return format_result(expression)
     
-    firstNumber = float(removeTrailingZeroes(expression[:index]))
+    firstNumber = float(format_result(expression[:index]))
     if(negative) : firstNumber *= -1
     
     s = expression[index+1:]
     # all these cases, there is no second number, so just return the second number
-    if not s : return removeTrailingZeroes(str(firstNumber))
-    if len(s) == 1 and s[0] == '-' : return removeTrailingZeroes(str(firstNumber))
+    if not s : return format_result(str(firstNumber))
+    if len(s) == 1 and s[0] == '-' : return format_result(str(firstNumber))
     
-    secondNumber = float(removeTrailingZeroes(expression[index+1:]))
+    secondNumber = float(format_result(expression[index+1:]))
     
     match operator : 
         case '+' : 
@@ -68,7 +71,7 @@ def calculate_expresion(expression) :
             result = (firstNumber/secondNumber) * 100
         case _: 
             result = None
-    result = removeTrailingZeroes(str(result))
+    result = format_result(str(result))
     
     if result == '-0' : 
         result = '0'
