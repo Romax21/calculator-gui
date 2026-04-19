@@ -1,6 +1,6 @@
 from utils.constants import ZERO_DIVISION_MESSAGE
 
-def format_result(result) : 
+def format_result(result) -> str: 
     num = float(result)
     
     #limit upto 10 digits after decimal to remove floating noise
@@ -11,9 +11,9 @@ def format_result(result) :
     
     return formatted
 
-def calculate_expresion(expression) : 
+def calculate_expresion(expression) -> str : 
     # if the expression is empty
-    if not expression : return
+    if not expression : return ""
     
     negative = False
     # remove the negative but store it
@@ -22,7 +22,7 @@ def calculate_expresion(expression) :
         expression = expression[1:]
     
     # if expression is empty
-    if not expression : return
+    if not expression : return ""
     
     # if the last char is decimal, just remove it
     if expression[len(expression)-1] == '.' : 
