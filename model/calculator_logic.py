@@ -31,7 +31,7 @@ def calculate_expresion(expression) -> str :
     operator = '$'
     index = 0
     
-    for op in "*/+-%" : 
+    for op in "*/%+-" : 
         if op in expression : 
             operator = op
             index = expression.find(op)
@@ -68,7 +68,7 @@ def calculate_expresion(expression) -> str :
         case '%' : 
             if secondNumber == 0 :
                 return ZERO_DIVISION_MESSAGE
-            result = (firstNumber/secondNumber) * 100
+            result = firstNumber % secondNumber
         case _: 
             result = None
     result = format_result(str(result))
