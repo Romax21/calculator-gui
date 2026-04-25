@@ -134,7 +134,7 @@ class calculator_engine :
     
     def equalCalled(self) : 
         result = calculator_logic.calculate_expresion(self.inputResult())
-        if result != constants.ZERO_DIVISION_MESSAGE : 
+        if result != constants.ZERO_DIVISION_MESSAGE and result : 
             self.justEvaluated = True
             self.opA = result
         else : 
@@ -148,7 +148,7 @@ class calculator_engine :
     
     def reciprocal(self) : 
         expression,result = self.equalCalled()
-        if result == constants.ZERO_DIVISION_MESSAGE : 
+        if result == constants.ZERO_DIVISION_MESSAGE or not result : 
             return (expression,result)
         
         self.opA = "1"
@@ -160,7 +160,7 @@ class calculator_engine :
     
     def square(self) : 
         expression,result = self.equalCalled()
-        if result == constants.ZERO_DIVISION_MESSAGE : 
+        if result == constants.ZERO_DIVISION_MESSAGE or not result : 
             return (expression,result)
         
         self.opA = result
