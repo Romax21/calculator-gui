@@ -69,6 +69,10 @@ def calculate_expresion(expression) -> str :
             if secondNumber == 0 :
                 return ZERO_DIVISION_MESSAGE
             result = firstNumber % secondNumber
+            if abs(result) < 1e-10 : 
+                result = 0.0
+            if abs(result - abs(secondNumber)) < 1e-10 : 
+                result = 0.0
         case _: 
             result = None
     result = format_result(str(result))
