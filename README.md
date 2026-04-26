@@ -1,17 +1,17 @@
-A Calculator Project using Python tkinter
+**A Calculator Project using Python tkinter**
 
-It is an MVC(model-view-controller) style project
-Calculator
-    -> model
+**It is an MVC(model-view-controller) style project**
+**Calculator
+    -> model**
         -> calculator_engine.py
         -> calculator_logic.py
-    -> view
+    **-> view**
         -> calculator_view.py
-    -> controller
+   ** -> controller**
         -> calculator_controller.py
-    -> utils
+    **-> utils**
         -> constants
-    app.py
+   ** app.py**
 
 1. app.py starts the whole project.
 2. view - Makes the whole UI of the calculator(all the buttons,input, output, etc)
@@ -20,7 +20,7 @@ Calculator
 5. calculator_engine get the input from controller and changes its input variables(two operator and a operator)
 6. It call calculator_logic when an output button such as =, etc is called
 
-Features - 
+**Features - **
 1. The layout is like a phone calculator. The buttons have to pressed to put an input
 2. The operators - +,-,*,/,% (modulus)
 3. The decimal are allowed, so floating point operations are possible
@@ -30,7 +30,7 @@ Features -
 7. The operation can continue from previous operations output
 8. Takes care of division by zero error
 
-Limitations/Future Improvement - 
+**Limitations/Future Improvement - **
 1. A Very simple UI
 2. Only allows one operator between two operands at a time
 3. Doesn't consider very large inputs so may give error
