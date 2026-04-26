@@ -1,8 +1,8 @@
 **A Calculator Project using Python tkinter**
 
 **It is an MVC(model-view-controller) style project**
-**Calculator
-    -> model**
+**Calculator**
+    **-> model**
         -> calculator_engine.py
         -> calculator_logic.py
     **-> view**
@@ -11,7 +11,7 @@
         -> calculator_controller.py
     **-> utils**
         -> constants
-   ** app.py**
+    **app.py**
 
 1. app.py starts the whole project.
 2. view - Makes the whole UI of the calculator(all the buttons,input, output, etc)
