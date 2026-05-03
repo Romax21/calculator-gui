@@ -1,9 +1,15 @@
+import pytest
 from model.calculator_logic import calculate_expresion
 
-def test_add_basic() : 
-    result = calculate_expresion("2+3")
-    assert result == "5"
-    
-def test_addDouble() : 
-    result = calculate_expresion("23+34")
-    assert result == "57"
+@pytest.mark.parametrize(
+    "expression, expected",
+    [
+        ("2+3","5"),
+        ("7-4","3"),
+        ("6*5","30"),
+        ("8/2","4")
+    ]
+)
+def test_basicOperations(expression,expected) : 
+    result = calculate_expresion(expression)
+    assert result == expected
