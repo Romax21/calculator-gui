@@ -1,5 +1,7 @@
-model/__pycache__
-controller/__pycache__/
-utils/__pycache__/
-view/__pycache__/
+main/model/__pycache__
+main/controller/__pycache__/
+main/utils/__pycache__/
+main/view/__pycache__/
+
+# can also write the above *__pycache__
 venv
