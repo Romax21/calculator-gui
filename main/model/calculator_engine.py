@@ -1,5 +1,5 @@
-from model import calculator_logic
-from utils import constants
+from main.model import calculator_logic
+from main.utils import constants
 class calculator_engine : 
     def __init__(self):
         self.opA = ""

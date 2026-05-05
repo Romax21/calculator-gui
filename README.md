@@ -38,3 +38,6 @@ Calculator
 3. Doesn't consider very large inputs so may give error
 4. Input cannot be pasted, have to write it one by one
 5. Keyboard buttons are not allowed, only calculator buttons are allowed
+
+Note - since root is Calculator
+-> Run it using python -m main.app
