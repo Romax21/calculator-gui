@@ -1,9 +1,7 @@
 import pytest
-import sys
 from main.model.calculator_logic import calculate_expression
 from main.utils.constants import ZERO_DIVISION_MESSAGE
 
-print(sys.path)
 @pytest.mark.parametrize(
     "expression, expected",
     [
