@@ -1,7 +1,9 @@
 import pytest
-from model.calculator_logic import calculate_expresion
-from utils.constants import ZERO_DIVISION_MESSAGE
+import sys
+from main.model.calculator_logic import calculate_expression
+from main.utils.constants import ZERO_DIVISION_MESSAGE
 
+print(sys.path)
 @pytest.mark.parametrize(
     "expression, expected",
     [
@@ -13,7 +15,7 @@ from utils.constants import ZERO_DIVISION_MESSAGE
     ]
 )
 def test_basicOperations(expression,expected) : 
-    result = calculate_expresion(expression)
+    result = calculate_expression(expression)
     assert result == expected
 
 @pytest.mark.parametrize(
@@ -27,7 +29,7 @@ def test_basicOperations(expression,expected) :
     ]
 )
 def test_decimalOperations(expression,expected) : 
-    result = calculate_expresion(expression)
+    result = calculate_expression(expression)
     assert result == expected
 
 @pytest.mark.parametrize(
@@ -38,5 +40,5 @@ def test_decimalOperations(expression,expected) :
     ]
 )
 def test_zeroDivision(expression,expected) : 
-    result = calculate_expresion(expression)
+    result = calculate_expression(expression)
     assert result == expected

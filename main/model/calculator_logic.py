@@ -11,7 +11,7 @@ def format_result(result) -> str:
     
     return formatted
 
-def calculate_expresion(expression) -> str : 
+def calculate_expression(expression) -> str : 
     # if the expression is empty
     if not expression : return ""
     
