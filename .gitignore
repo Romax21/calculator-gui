@@ -3,6 +3,7 @@ main/controller/__pycache__/
 main/utils/__pycache__/
 main/view/__pycache__/
 tests/__pycache__
+main/__pycache__
 # can also write the above *__pycache__
 
 venv
