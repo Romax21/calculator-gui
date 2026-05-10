@@ -41,3 +41,36 @@ def test_expression3(engine_object) :
     ex,result = engine_object.reciprocal()
     assert ex == ""
     assert result == "-0.04"
+    
+def test_expression4(engine_object) : 
+    engine_object.addOperator('-')
+    engine_object.addNumber('2')
+    engine_object.addNumber('5')
+    
+    assert engine_object.inputResult() == "-25"
+    assert engine_object.backspace() == "-2"
+    engine_object.addNumber('5')
+    
+    ex,result = engine_object.square()
+    assert ex == ""
+    assert result == "625"
+    
+    engine_object.addOperator('/')
+    engine_object.addNumber('1')
+    engine_object.addNumber('0')
+    
+    ex,result = engine_object.equalCalled()
+    assert ex == ""
+    assert result == "62.5"
+
+def test_expression5(engine_object) : 
+    engine_object.addOperator('-')
+    engine_object.addNumber('0')
+    engine_object.addDecimal()
+    
+    assert engine_object.inputResult() == "-0."
+    
+    assert engine_object.reciprocal()[1] == ZERO_DIVISION_MESSAGE
+    
+    engine_object.resetScreen()
+    assert engine_object.inputResult() == ""
