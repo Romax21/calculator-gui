@@ -41,7 +41,7 @@ def test_expression3(engine_object) :
     ex,result = engine_object.reciprocal()
     assert ex == ""
     assert result == "-0.04"
-    
+
 def test_expression4(engine_object) : 
     engine_object.addOperator('-')
     engine_object.addNumber('2')
