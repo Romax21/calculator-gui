@@ -1,10 +1,10 @@
 import pytest
-from main.model.calculator_engine import calculator_engine
+from main.model.calculator_engine import CalculatorEngine
 from main.utils.constants import ZERO_DIVISION_MESSAGE
 
 @pytest.fixture
 def engine_object() : 
-    return calculator_engine()
+    return CalculatorEngine()
 
 def test_expression1(engine_object) : 
     assert engine_object.addNumber('0') == "0"

@@ -1,15 +1,15 @@
 import pytest
-from main.controller.calculator_controller import calculator_controller
-from main.utils.constants import ZERO_DIVISION_MESSAGE
-from main.model.calculator_engine import calculator_engine
+from main.controller.calculator_controller import CalculatorController
+# from main.utils.constants import ZERO_DIVISION_MESSAGE
+from main.model.calculator_engine import CalculatorEngine
 
 @pytest.fixture
 def engine_object() : 
-    return calculator_engine()
+    return CalculatorEngine()
 
 @pytest.fixture
 def controller_object(engine_object) : 
-    return calculator_controller(engine_object)
+    return CalculatorController(engine_object)
 
 def test_addition(controller_object) : 
     controller_object.buttonPressed('2')
