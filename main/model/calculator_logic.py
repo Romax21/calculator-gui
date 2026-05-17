@@ -9,52 +9,27 @@ def format_result(result) -> str:
     # remove trailing zeroes and unnecessary decimal point
     formatted = formatted.rstrip('0').rstrip('.')
     
+    if formatted == "-0" : 
+        formatted = "0"
+    
     return formatted
 
-def calculate_expression(expression) -> str : 
-    # if the expression is empty
-    if not expression : return ""
+def calculate_expression(opA,oper,opB) -> str : 
+    #if opA is empty or opA == "-", just return it
+    if not opA or opA == "-" : return ""
     
-    negative = False
-    # remove the negative but store it
-    if(expression[0] == '-') : 
-        negative = True
-        expression = expression[1:]
+    # if oper is empty or opB is empty or opB is just negative, we need to return opA
+    if not oper or not opB or opB == "-" : 
+        result = format_result(opA)
+        if result == "-0" : result = "0"
+        return result
     
-    # if expression is empty
-    if not expression : return ""
-    
-    # if the last char is decimal, just remove it
-    if expression[len(expression)-1] == '.' : 
-        expression = expression[:-1]
     result = 0.0
-    operator = '$'
-    index = 0
     
-    for op in "*/%+-" : 
-        if op in expression : 
-            operator = op
-            index = expression.find(op)
-            break
+    firstNumber = float(format_result(opA))
+    secondNumber = float(format_result(opB))
     
-    # it implies there is no operator
-    if operator == '$' : 
-        # if the number was negative and not zero, add the negative
-        if negative and expression != "0" : 
-            expression = '-' + expression
-        return format_result(expression)
-    
-    firstNumber = float(format_result(expression[:index]))
-    if(negative) : firstNumber *= -1
-    
-    s = expression[index+1:]
-    # all these cases, there is no second number, so just return the second number
-    if not s : return format_result(str(firstNumber))
-    if len(s) == 1 and s[0] == '-' : return format_result(str(firstNumber))
-    
-    secondNumber = float(format_result(expression[index+1:]))
-    
-    match operator : 
+    match oper : 
         case '+' : 
             result = firstNumber + secondNumber
         case '-' : 
@@ -62,11 +37,11 @@ def calculate_expression(expression) -> str :
         case '*' : 
             result = firstNumber * secondNumber
         case '/' : 
-            if secondNumber == 0 : 
+            if secondNumber == 0.0 : 
                 return ZERO_DIVISION_MESSAGE
             result = firstNumber/secondNumber
         case '%' : 
-            if secondNumber == 0 :
+            if secondNumber == 0.0 : 
                 return ZERO_DIVISION_MESSAGE
             result = firstNumber % secondNumber
             if abs(result) < 1e-10 : 
@@ -76,7 +51,4 @@ def calculate_expression(expression) -> str :
         case _: 
             result = None
     result = format_result(str(result))
-    
-    if result == '-0' : 
-        result = '0'
     return result
