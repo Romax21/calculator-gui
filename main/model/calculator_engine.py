@@ -1,6 +1,6 @@
 from main.model import calculator_logic
 from main.utils import constants
-class calculator_engine : 
+class CalculatorEngine : 
     def __init__(self):
         self.opA = ""
         self.opB = ""

@@ -2,7 +2,7 @@ import tkinter as tk
 # from main.model.calculator_engine import calculator_engine
 # from controller.calculator_controller import calculator_controller
 
-class calculator_view : 
+class CalculatorView : 
     def __init__(self,controller) : 
         self.controller = controller
         self.root = tk.Tk()
