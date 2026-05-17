@@ -133,7 +133,7 @@ class calculator_engine :
         return self.inputResult()
     
     def equalCalled(self) : 
-        result = calculator_logic.calculate_expression(self.inputResult())
+        result = calculator_logic.calculate_expression(self.opA,self.oper,self.opB)
         if result != constants.ZERO_DIVISION_MESSAGE and result : 
             self.justEvaluated = True
             self.opA = result
