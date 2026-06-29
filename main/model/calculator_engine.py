@@ -11,6 +11,9 @@ class CalculatorEngine :
         return (self.opA + self.oper + self.opB)
     
     def addNumber(self,number) -> str : 
+        if len(number) > 1 : 
+            raise ValueError(constants.MORE_NUMBER_ERROR)
+        
         # new calculation
         if self.justEvaluated : 
             self.justEvaluated = False
@@ -82,6 +85,9 @@ class CalculatorEngine :
         return self.inputResult()
     
     def addOperator(self,op) -> str : 
+        if len(op) > 1 : 
+            raise ValueError(constants.MULTIPLE_OPERATOR_ERROR)
+        
         if op == "-" : 
             return self.addMinus()
         

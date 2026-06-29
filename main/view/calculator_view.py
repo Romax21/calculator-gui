@@ -44,7 +44,7 @@ class CalculatorView :
 
         self.buttonFrame.pack(padx=10,pady=10,fill='both',expand=True)
 
-    def buttonPressed(self,text) : 
+    def buttonPressed(self,text) :  
         expression,result = self.controller.buttonPressed(text)
         self.input_field.set(expression)
         self.output_field.set(result)
