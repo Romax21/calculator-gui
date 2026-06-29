@@ -30,7 +30,10 @@ class CalculatorController :
                 self.engine.resetScreen()
             else : 
                 raise ValueError(constants.INVALID_INPUT_ERROR)
-        except (ValueError,ZeroDivisionError) as e : 
+        except ValueError as e : 
             self.engine.resetScreen()
             self.result = str(e)
+        except ZeroDivisionError : 
+            self.engine.resetScreen()
+            self.result = constants.ZERO_DIVISION_MESSAGE
         return (self.expression,self.result)
