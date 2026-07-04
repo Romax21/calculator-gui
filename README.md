@@ -39,6 +39,7 @@ Calculator
 4. Input cannot be pasted, have to write it one by one
 5. Keyboard buttons are not allowed, only calculator buttons are allowed
 6. For now, if user puts in anything that raises an error, we reset the whole thing, this can be changed in the future
+7. If the input already has an operator and user add another, we could solve it and then append operator to result
 
 Note - since root is Calculator
 -> Run it using python -m main.app
