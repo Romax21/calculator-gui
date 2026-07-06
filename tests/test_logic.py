@@ -31,16 +31,16 @@ def test_decimalOperations(opA,oper,opB,expected) :
     assert result == expected
 
 @pytest.mark.parametrize(
-    "opA,oper,opB,expected",
+    "opA,oper,opB",
     [
-        ("1","/","0",ZERO_DIVISION_MESSAGE),
-        ("23","%","0",ZERO_DIVISION_MESSAGE)
+        ("1","/","0"),
+        ("23","%","0")
     ]
 )
-def test_zeroDivision(opA,oper,opB,expected) : 
-    result = calculate_expression(opA,oper,opB)
-    assert result == expected
-    
+def test_zeroDivision(opA,oper,opB) : 
+    with pytest.raises(ZeroDivisionError) : 
+        calculate_expression(opA,oper,opB)
+
 @pytest.mark.parametrize(
     "opA,oper,opB,expected",
     [
