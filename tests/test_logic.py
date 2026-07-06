@@ -45,10 +45,12 @@ def test_zeroDivision(opA,oper,opB,expected) :
     "opA,oper,opB,expected",
     [
         (".","","","The first character is a decimal"),
-        ("12","",".23","The first character is a decimal"),
+        ("12","+",".23","The first character is a decimal"),
         (" 12 ","+","45","Number contains space, it should not contain space!"),
         ("12a","","","The input is invalid"),
-        ("1.2.","","","The input contains multiple decimals")
+        ("12","-","8.9..","The input contains multiple decimals"),
+        ("12","23","","Operator is invalid"),
+        ("12","+-","","Operator must be just one letter")
     ]
 )
 def test_inputException(opA,oper,opB,expected) : 

@@ -44,9 +44,9 @@ def verifyOperator(oper) :
     # Operator can only be +,-,*,/ or %
     
     if not oper : return
-    if len(oper) > 1 : raise ValueError(constants.MULTIPLE_OPERATOR_ERROR)
+    if oper not in '+-*/%' : raise ValueError(constants.INVALID_OPERATOR_ERROR)
     
-    if oper not in '+-*/%' : raise ValueError(constants.INVALID_INPUT_ERROR)
+    if len(oper) > 1 : raise ValueError(constants.SINGLE_OPERATOR_ERROR)
 
 def verifyInputs(opA,oper,opB) : 
     verifyNumber(opA)
