@@ -21,6 +21,8 @@ def verifyNumber(number) :
     # Other than decimal, it should only have numbers
     # Number cannot start with decimal
     
+    if number == '' : return
+    
     if number[0] == '-' : 
         number = number[1:]
     if not number : return
@@ -52,6 +54,11 @@ def verifyInputs(opA,oper,opB) :
     verifyNumber(opA)
     verifyOperator(oper)
     verifyNumber(opB)
+    
+    if not opA or opA == "-" : 
+        if opB or oper : raise ValueError(constants.IMPOSSIBLE_EQUATION_ERROR)
+    if not oper : 
+        if opB and opB != '-' : raise ValueError(constants.IMPOSSIBLE_EQUATION_ERROR)
 
 def calculate_expression(opA,oper,opB) -> str : 
     
