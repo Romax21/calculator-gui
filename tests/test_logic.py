@@ -40,3 +40,18 @@ def test_decimalOperations(opA,oper,opB,expected) :
 def test_zeroDivision(opA,oper,opB,expected) : 
     result = calculate_expression(opA,oper,opB)
     assert result == expected
+    
+@pytest.mark.parametrize(
+    "opA,oper,opB,expected",
+    [
+        (".","","","The first character is a decimal"),
+        ("12","",".23","The first character is a decimal"),
+        (" 12 ","+","45","Number contains space, it should not contain space!"),
+        ("12a","","","The input is invalid"),
+        ("1.2.","","","The input contains multiple decimals")
+    ]
+)
+def test_inputException(opA,oper,opB,expected) : 
+    with pytest.raises(ValueError) as exc : 
+        calculate_expression(opA,oper,opB)
+    assert str(exc.value) == expected

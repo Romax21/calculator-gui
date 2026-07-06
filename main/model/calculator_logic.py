@@ -19,13 +19,13 @@ def verifyNumber(number) :
     # Number cannot contains space
     # Number cannot contain more than one decimal
     # Other than decimal, it should only have numbers
-    # Number cannot be just '.'
+    # Number cannot start with decimal
     
-    if not number or number == "-" : return
     if number[0] == '-' : 
         number = number[1:]
+    if not number : return
     
-    if number == '.' : raise ValueError(constants.JUST_A_DECIMAL_ERROR)
+    if number[0] == '.' : raise ValueError(constants.STARTS_WITH_DECIMAL_ERROR)
     
     if ' ' in number : 
         raise ValueError(constants.NUMBER_SPACE_ERROR)
