@@ -1,6 +1,5 @@
 import pytest
 from main.model.calculator_logic import calculate_expression
-from main.utils.constants import ZERO_DIVISION_MESSAGE
 
 @pytest.mark.parametrize(
     "opA,oper,opB,expected",

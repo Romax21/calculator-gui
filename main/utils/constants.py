@@ -1,4 +1,4 @@
-ZERO_DIVISION_MESSAGE = "Division by zero is not possible !!"
+ZERO_DIVISION_ERROR = "Division by zero is not possible !!"
 NUMBER_SPACE_ERROR = "Number contains space, it should not contain space!"
 INPUT_EMPTY_ERROR = "Input cannot be empty"
 MORE_NUMBER_ERROR = "Number has more than one digit"

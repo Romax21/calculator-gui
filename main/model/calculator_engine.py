@@ -86,7 +86,7 @@ class CalculatorEngine :
     
     def addOperator(self,op) -> str : 
         if len(op) > 1 : 
-            raise ValueError(constants.MULTIPLE_OPERATOR_ERROR)
+            raise ValueError(constants.SINGLE_OPERATOR_ERROR)
         
         if op == "-" : 
             return self.addMinus()

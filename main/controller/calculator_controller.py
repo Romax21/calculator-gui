@@ -35,5 +35,5 @@ class CalculatorController :
             self.result = str(e)
         except ZeroDivisionError : 
             self.engine.resetScreen()
-            self.result = constants.ZERO_DIVISION_MESSAGE
+            self.result = constants.ZERO_DIVISION_ERROR
         return (self.expression,self.result)
