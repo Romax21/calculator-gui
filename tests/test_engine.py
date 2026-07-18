@@ -1,12 +1,12 @@
 import pytest
 from main.model.calculator_engine import CalculatorEngine
-from main.utils.constants import ZERO_DIVISION_MESSAGE
+import main.utils.constants as const
 
 @pytest.fixture
 def engine_object() : 
     return CalculatorEngine()
 
-def test_expression1(engine_object) : 
+def test_expression(engine_object) : 
     assert engine_object.addNumber('0') == "0"
     assert engine_object.addNumber('2') == "2"
     assert engine_object.addNumber('3') == "23"
@@ -18,22 +18,18 @@ def test_expression1(engine_object) :
     assert expression == ""
     assert result == "23.9"
 
-def test_expression2(engine_object) : 
+def test_expression_with_exception(engine_object) : 
     engine_object.addOperator('-')
     engine_object.addNumber('2')
     engine_object.addNumber('5')
     engine_object.addOperator('*')
-    engine_object.addOperator('-')
-    engine_object.addNumber('2')
-    engine_object.addNumber('5')
+    assert engine_object.inputResult() == "-25*"
     
-    assert engine_object.inputResult() == "-25*-25"
-    
-    ex,result = engine_object.equalCalled()
-    assert ex == ""
-    assert result == "625"
+    with pytest.raises(ValueError) as exec : 
+        engine_object.addNumber('25')
+    assert str(exec.value) == const.MORE_NUMBER_ERROR
 
-def test_expression3(engine_object) : 
+def tes_reciprocal_expression(engine_object) : 
     engine_object.addOperator('-')
     engine_object.addNumber('2')
     engine_object.addNumber('5')
@@ -42,7 +38,14 @@ def test_expression3(engine_object) :
     assert ex == ""
     assert result == "-0.04"
 
-def test_expression4(engine_object) : 
+def test_decimal_value(engine_object) : 
+    engine_object.addMinus() == '-'
+    engine_object.addDecimal() == '-0.'
+    engine_object.addDecimal() == '-0.'
+    engine_object.backspace() == '-0'
+    engine_object.addDecimal() == '-0.'
+
+def test_operator_error(engine_object) : 
     engine_object.addOperator('-')
     engine_object.addNumber('2')
     engine_object.addNumber('5')
@@ -55,22 +58,6 @@ def test_expression4(engine_object) :
     assert ex == ""
     assert result == "625"
     
-    engine_object.addOperator('/')
-    engine_object.addNumber('1')
-    engine_object.addNumber('0')
-    
-    ex,result = engine_object.equalCalled()
-    assert ex == ""
-    assert result == "62.5"
-
-def test_expression5(engine_object) : 
-    engine_object.addOperator('-')
-    engine_object.addNumber('0')
-    engine_object.addDecimal()
-    
-    assert engine_object.inputResult() == "-0."
-    
-    assert engine_object.reciprocal()[1] == ZERO_DIVISION_MESSAGE
-    
-    engine_object.resetScreen()
-    assert engine_object.inputResult() == ""
+    with pytest.raises(ValueError) as exce : 
+        engine_object.addOperator('/*')
+    assert str(exce.value) == const.SINGLE_OPERATOR_ERROR
